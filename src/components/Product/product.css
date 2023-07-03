@@ -1,0 +1,11 @@
+.product{
+    display: flex;
+    position: relative;
+}
+
+.btn{
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    margin-left: -11px;
+}

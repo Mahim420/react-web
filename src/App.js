@@ -1,15 +1,11 @@
-//IMPORT SECTION
 import './App.css';
-import Header from './components/Header/Header';
-import Shop from './components/Shop/Shop';
-//IMPORT SECTION
-
-
+import Nav from './components/Navbar/Nav';
+import Work from './components/Work/Work';
 function App() {
   return (
     <div>
-      <Header></Header>
-      <Shop></Shop>
+     <Nav></Nav>
+     <Work></Work>
     </div>
   );
 }

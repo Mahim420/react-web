@@ -1,0 +1,27 @@
+.display{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.now{
+    margin-top: 10px;
+}
+
+.cart-body{
+    background-color: rgba(0, 0, 0, 0.76);
+    width: 400px;
+    margin-top: 10px;
+    padding: 20px;
+    height: 600px;
+    z-index: 1;
+    border-radius: 15px;
+    position: fixed;
+    right: 0;
+
+}
+
+.cart-item{
+    position: sticky;
+    top: 100px;
+}
