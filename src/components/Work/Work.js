@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import './work.css';
-import { addToDb } from '../LocalStorage/fakeDb';
 import Cart from '../LocalStorage/Cart/Cart';
+import { addToDb } from '../LocalStorage/fakeDb';
 
 
 const Work = () => {
     const [products, setProducts] = useState([]);
+    const [cart, setCart] = useState([]);
+    
     useEffect(()=>{
         fetch('products.json')
         .then(res => res.json())
         .then(data => setProducts(data))
     },[])
 
-    const addToCart = (id) =>{
-        console.log(id)
+
+    const addToCart = (product) =>{
+    //   console.log(product)
+      const newCart = [...cart, product];
+      setCart(newCart);
     }
     return (
         <div className='d-flex justify-content-between p-5'>
@@ -23,15 +28,17 @@ const Work = () => {
                  <div className='display'>
                  {
                     products.map(product =><Product
-                         product={product}
-                         addToCart = {addToCart}
-                    ></Product>)
+                        product={product}
+                        key={product.id}
+                        addToCart = {addToCart}
+                   ></Product>
+                    )
                  }
                  </div>
             </section>
             <section className='cart-body'>
               <div className='cart-item'>
-               <Cart></Cart>
+               <Cart cart={cart}></Cart>
              </div>
             </section>
         </div>
