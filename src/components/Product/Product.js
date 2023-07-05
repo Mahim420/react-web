@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './product.css';
 
 const Product = (props) => {
+    const [state, setState] = useState(false)
+
+    const toggle = () =>{
+        setState(!state)
+    }
     // console.log(props.product)
     const {addToCart, product} = props;
-   const {category,about,img,id,age,time} = product;
+   const {category,about,img,age,time} = product;
     return (   
           <div className="card p-2" style={{width:'18rem'}}>
             <img src={img} className="card-img-top" alt="..."></img>
@@ -13,7 +18,11 @@ const Product = (props) => {
                <p className="card-text">{about.substring(0, 90)}</p>
                <p>For Age : {age}</p>
                <p>Time required : {time}s</p>
-               <button onClick={()=>{addToCart(product)}} className='btn btn-success'>Add to list</button>
+               <button onClick={()=>{
+                addToCart(product) 
+                toggle()
+            }} className='btn btn-success'>{state ? 'added' : 'add to cart'}
+            </button>
            </div>
           </div>
     );

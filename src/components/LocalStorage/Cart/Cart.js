@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import img from '../../../Collect/mahim.jpg';
-import './cart.css'
+import './cart.css';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const Cart = ({cart}) => {
+
+    const notify = () => toast("All Task done");
+
     // console.log(car)
      let quantity = 0;
      let count = 0;
@@ -56,7 +61,8 @@ const Cart = ({cart}) => {
                 <h6 className='bg-white p-3 rounded'>QUantity : {quantity}</h6>
             </div>
            <div className='d-flex justify-content-center'>
-              <button className='w-75 h-75 mt-4 rounded bg-primary'>Activity Compleate</button>
+              <button onClick={notify} className='w-75 h-75 mt-4 rounded bg-primary'>Activity Compleate</button>
+          <ToastContainer/>
           </div>
         </section>
     );
