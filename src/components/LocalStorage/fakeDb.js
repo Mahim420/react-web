@@ -1,22 +1,33 @@
 const addToDb = (id) =>{
-    let shoppingCart = {};
-    const storedItem = localStorage.getItem("Shopping-Cart");
+    let counter = {};
+    const storedItem = localStorage.getItem("Count");
 
     if(storedItem){
-        shoppingCart = JSON.parse(storedItem);
+        counter = JSON.parse(storedItem);
     }
 
-    const quantity = shoppingCart[id];
+    const quantity = counter[id];
     if(quantity){
         const newQuantity = quantity + 1;
-        shoppingCart[id] = newQuantity;
+        counter[id] = newQuantity;
     }
     else{
-        shoppingCart[id] = 1;
+        counter[id] = 1;
     }
 
-    localStorage.setItem("Shopping-cart", JSON.stringify(shoppingCart));
+    localStorage.setItem("Count", JSON.stringify(counter));
 
 }
 
-export {addToDb};
+
+const getCount = () =>{
+    let counter = {};
+    const storedItem = localStorage.getItem('Count')
+    if(storedItem){
+        counter = JSON.parse(storedItem)
+    }
+
+    return counter;
+}
+
+export {addToDb, getCount};

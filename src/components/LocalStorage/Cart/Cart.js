@@ -3,13 +3,16 @@ import img from '../../../Collect/mahim.jpg';
 import './cart.css'
 
 const Cart = ({cart}) => {
-    // console.log(cart)
-
-    let count = 0;
+    // console.log(car)
+     let quantity = 0;
+     let count = 0;
     for(const all of cart){
-        count = count + all.time;
+         quantity = quantity + all.quantity;
+         count =count + all.time * quantity;
     }
-    
+
+   console.log(count);
+         
     const [values, setValue] = useState();
     return (
         <section>
@@ -50,6 +53,7 @@ const Cart = ({cart}) => {
                 <h4 className='text-white'>Task Detailes</h4>
                 <h6 className='bg-white p-3 rounded'>Excersise Time :{count}</h6>
                 <h6 className='bg-white p-3 rounded'>Break Time : {values}</h6>
+                <h6 className='bg-white p-3 rounded'>QUantity : {quantity}</h6>
             </div>
            <div className='d-flex justify-content-center'>
               <button className='w-75 h-75 mt-4 rounded bg-primary'>Activity Compleate</button>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import './work.css';
 import Cart from '../LocalStorage/Cart/Cart';
-import { addToDb } from '../LocalStorage/fakeDb';
+import { addToDb, getCount } from '../LocalStorage/fakeDb';
 
 
 const Work = () => {
@@ -15,11 +15,38 @@ const Work = () => {
         .then(data => setProducts(data))
     },[])
 
+    useEffect(()=>{
+        const storedItem = getCount()
+        const saveTime = [];
+        for(const id in storedItem){
+            const addedTime = products.find(product=>product.id === id);
+            if(addedTime){
+                const quantity = storedItem[id];
+                addedTime.quantity = quantity;
+                saveTime.push(addedTime);
+            }
+        }
+        setCart(saveTime)
+    }, [products])
+
 
     const addToCart = (product) =>{
     //   console.log(product)
-      const newCart = [...cart, product];
+      const exits = cart.find(time=>time.id === product.id);
+      let newCart = [];
+
+      if(!exits){
+        product.quantity = 1;
+        newCart = [...cart, product]
+      }
+      else{
+        const rest = cart.filter(time=>time.id === product.id);
+        exits.quantity = exits.quantity + 1;
+        newCart = [...rest, exits]
+      }
+
       setCart(newCart);
+      addToDb(product.id);
     }
     return (
         <div className='d-flex justify-content-between p-5'>
